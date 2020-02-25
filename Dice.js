@@ -69,12 +69,19 @@ function rollDice(){
 }
 
 function finalRound(array){
-
+    //each roll 20 4 times, then roll d4 to determine which of their rolls plays
+    array[0] = finalRoundRolls();
+    array[1] = finalRoundRolls();
+    //Does this function run twice? I want to make sure it doesn't return the same number each time
+    if (array[0] === array[1]){
+        finalRound(array);
+    }
 }
 
 //Need a function that will compare all numbers returned and assign the losers the int -1
 function comparePlayers(players){
     counter = 0;
+    //Maybe want something here about if two players tie, they play directly against each other. But only if they're bottom 2?
     players.sort(function(a, b) {return a-b});
     if (counter < 0 || counter < 4){
         players[(players.length - ((counter * 2) + 1))] = -1;
@@ -92,4 +99,14 @@ function comparePlayers(players){
     counter++;
     return players;
     //Should be fun to test
+}
+
+function finalRoundRolls(){
+    d20[0] = (Math.random() * 20) + 1;
+    d20[1] = (Math.random() * 20) + 1;
+    d20[2] = (Math.random() * 20) + 1;
+    d20[3] = (Math.random() * 20) + 1;
+    //Make sure this is how it should work
+    d4 = (Math.random() * 4) + 1;
+    return d20[d4];
 }
