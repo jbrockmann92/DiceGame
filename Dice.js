@@ -10,6 +10,8 @@ var playerEight = 0;
 var playerNine = 0;
 var playerTen = 0;
 
+var counter = 0;
+
 //Should allow pure functions because I can edit what I pass in
 var playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix, playerSeven, playerEight, playerNine, playerTen];
 
@@ -35,14 +37,13 @@ var playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, pl
 
 function playGame(){
     //Probably something with a button to start a new game here
-    let counter = 1;
     //Test here against rounds, and call finalRound if necessary. Pass in array
-    if (counter === 6){
+    if (counter === 5){
         finalRound(playerArray);
         counter++;
     }
     else{
-        if (counter < 7){
+        if (counter < 6){
             fullRound(playerArray);
             counter++;
         }
@@ -80,34 +81,34 @@ function finalRound(array){
 
 //Need a function that will compare all numbers returned and assign the losers the int -1
 function comparePlayers(players){
-    let counter = 0;
     //Maybe want something here about if two players tie, they play directly against each other. But only if they're bottom 2?
-    players.sort(function(a, b) {return a-b});
-    if (counter < 0 || counter < 4){
+    players.sort(function(a, b) {return b-a});
+    if (counter > -1 && counter < 3){
         players[(players.length - ((counter * 2) + 1))] = -1;
         players[(players.length - ((counter * 2) + 2))] = -1;
     }
-    else if (counter == 4){
+    else if (counter == 3){
         players[(players.length - ((counter * 2) + 1))] = -1;
     }
-    else if (counter == 5){
+    else if (counter == 4){
         players[(players.length - (counter * 2))] = -1;
     }
     else {
         players[(players.length - (counter + 1))] = -1;
     }
-    counter++;
     //Separate counter here to keep functions pure. Is this best practice?
     return players;
     //Should be fun to test
 }
 
 function finalRoundRolls(){
-    d20[0] = (Math.random() * 20) + 1;
-    d20[1] = (Math.random() * 20) + 1;
-    d20[2] = (Math.random() * 20) + 1;
-    d20[3] = (Math.random() * 20) + 1;
+    let firstRand = Math.round((Math.random() * 20) + 1);
+    let secondRand = Math.round((Math.random() * 20) + 1);
+    let thirdRand = Math.round((Math.random() * 20) + 1);
+    let fourthRand = Math.round((Math.random() * 20) + 1);
+    let d20 = [firstRand, secondRand, thirdRand, fourthRand]
     //Make sure this is how it should work
-    d4 = (Math.random() * 4) + 1;
-    return d20[d4];
+    var d4 = Math.round((Math.random() * 4) + 1);
+    let final = d20[d4];
+    return final;
 }
