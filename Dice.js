@@ -74,7 +74,22 @@ function finalRound(array){
 
 //Need a function that will compare all numbers returned and assign the losers the int -1
 function comparePlayers(players){
+    counter = 0;
     players.sort(function(a, b) {return a-b});
-
-    //This doesn't work because it will always take the lowest two, even after those two have 'been removed'
+    if (counter < 0 || counter < 4){
+        players[(players.length - ((counter * 2) + 1))] = -1;
+        players[(players.length - ((counter * 2) + 2))] = -1;
     }
+    else if (counter == 4){
+        players[(players.length - ((counter * 2) + 1))] = -1;
+    }
+    else if (counter == 5){
+        players[(players.length - (counter * 2))] = -1;
+    }
+    else {
+        players[(players.length - (counter + 1))] = -1;
+    }
+    counter++;
+    return players;
+    //Should be fun to test
+}
