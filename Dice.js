@@ -1,17 +1,17 @@
 "use strict"
-let playerOne;
-let playerTwo;
-let playerThree;
-let playerFour;
-let playerFive;
-let playerSix;
-let playerSeven;
-let playerEight;
-let playerNine;
-let playerTen;
+var playerOne = 0;
+var playerTwo = 0;
+var playerThree = 0;
+var playerFour = 0;
+var playerFive = 0;
+var playerSix = 0;
+var playerSeven = 0;
+var playerEight = 0;
+var playerNine = 0;
+var playerTen = 0;
 
 //Should allow pure functions because I can edit what I pass in
-let playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix, playerSeven, playerEight, playerNine, playerTen];
+var playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix, playerSeven, playerEight, playerNine, playerTen];
 
 //Assign a a number to each for a dice roll for the first function, then write more functions
 //with if statements that ignore the variables that contain -1 or something. Assign the losers'
@@ -33,17 +33,17 @@ let playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, pl
 //to roll their dice, then display the sum of their roles. Maybe display each roll and total?
 
 
-function playGame(array){
+function playGame(){
     //Probably something with a button to start a new game here
     let counter = 1;
     //Test here against rounds, and call finalRound if necessary. Pass in array
     if (counter === 6){
-        finalRound(array);
+        finalRound(playerArray);
         counter++;
     }
     else{
         if (counter < 7){
-            fullRound(array);
+            fullRound(playerArray);
             counter++;
         }
         else alert("Game is over!");
@@ -64,7 +64,7 @@ function fullRound(array){
 }
 
 function rollDice(){
-    let player = (((Math.random() * 4) + 1) + ((Math.random() * 6) + 1) + ((Math.random() * 8) + 1) + ((Math.random() * 10) + 1) + ((Math.random() * 12) + 1) + ((Math.random() * 20) + 1));
+    let player = Math.round((((Math.random() * 4) + 1) + ((Math.random() * 6) + 1) + ((Math.random() * 8) + 1) + ((Math.random() * 10) + 1) + ((Math.random() * 12) + 1) + ((Math.random() * 20) + 1)));
     return player;
 }
 
@@ -80,7 +80,7 @@ function finalRound(array){
 
 //Need a function that will compare all numbers returned and assign the losers the int -1
 function comparePlayers(players){
-    counter = 0;
+    let counter = 0;
     //Maybe want something here about if two players tie, they play directly against each other. But only if they're bottom 2?
     players.sort(function(a, b) {return a-b});
     if (counter < 0 || counter < 4){
