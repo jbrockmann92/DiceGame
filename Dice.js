@@ -40,25 +40,31 @@ function playGame(array){
     if (counter === 6){
         finalRound(array);
     }
+    else{
+        fullRound(array);
+        counter++;
+    }
 }
 
 function fullRound(array){
 
-    for (let i = 0; i < 6; i++){
+    for (let i = 0; i < array.length; i++){
         if (array[i] === 25){
             continue;
         }
         else{
-            rollDice(array[i])
+            array[i] = rollDice(array[i])
         }
     }
 }
 
 function rollDice(player){
-
+    player = ((Math.random() * 20) + 1);
 
 }
 
 function finalRound(array){
 
 }
+
+//Need a function that will compare all numbers returned and assign the losers the int 25
