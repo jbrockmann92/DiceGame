@@ -51,7 +51,6 @@ function startGame(){
 
 function playRound(){
     //How can I make a button here that will roll dice for the next round?
-
     if (counter === 5){
         finalRound(playerArray);
         counter++;
@@ -73,6 +72,8 @@ function fullRound(array){
         }
         else{
             array[i] = rollDice()
+            document.getElementById("diceRolls").innerHTML = array[i];
+            //This returns the numbers I want one by one, but each time it ends up overwriting the old one. How to print each one in a new place?
         }
     }
     let playersRemoved = comparePlayers(array);
@@ -80,7 +81,7 @@ function fullRound(array){
 
 function rollDice(){
     let player = Math.round((((Math.random() * 4) + 1) + ((Math.random() * 6) + 1) + ((Math.random() * 8) + 1) + ((Math.random() * 10) + 1) + ((Math.random() * 12) + 1) + ((Math.random() * 20) + 1)));
-    //Put the result up when the player rolls
+    //This is printing the one item to the page. Probably have to put somewhere else so it can print all of the numbers 
     return player;
 }
 
