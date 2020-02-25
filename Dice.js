@@ -72,11 +72,26 @@ function fullRound(array){
         }
         else{
             array[i] = rollDice()
-            document.getElementById("diceRolls").innerHTML = array[i];
+            //For loop that runs 10 times and goes through 10 divs in the html file?
+            if (checkDiceRoll(array[i]) > 0)
+            {
+                document.getElementById(array[i]).innerHTML = "Player" + i + "'s score is " + array[i];
+            }
+            //Should work eh?
+            //Write function that takes in array[i] and returns it if it's not -1, but returns something like "player is out" if it is
+
             //This returns the numbers I want one by one, but each time it ends up overwriting the old one. How to print each one in a new place?
+            //How do I progress through each of the players who is still in and print the number returned to their section?
         }
     }
     let playersRemoved = comparePlayers(array);
+}
+
+function checkDiceRoll(roll){
+    //Might not need to use this at all??
+    if (roll > 0){
+        return roll;
+    }
 }
 
 function rollDice(){
