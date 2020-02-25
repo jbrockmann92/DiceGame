@@ -97,6 +97,7 @@ function comparePlayers(players){
         players[(players.length - (counter + 1))] = -1;
     }
     counter++;
+    //Separate counter here to keep functions pure. Is this best practice?
     return players;
     //Should be fun to test
 }
