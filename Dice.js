@@ -1,16 +1,16 @@
 "use strict"
-var playerOne = 0;
-var playerTwo = 0;
-var playerThree = 0;
-var playerFour = 0;
-var playerFive = 0;
-var playerSix = 0;
-var playerSeven = 0;
-var playerEight = 0;
-var playerNine = 0;
-var playerTen = 0;
+var playerOne;
+var playerTwo;
+var playerThree;
+var playerFour;
+var playerFive;
+var playerSix;
+var playerSeven;
+var playerEight;
+var playerNine;
+var playerTen;
 
-var counter = 0;
+var counter;
 
 //Should allow pure functions because I can edit what I pass in
 var playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix, playerSeven, playerEight, playerNine, playerTen];
@@ -34,10 +34,24 @@ var playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, pl
 //Function to run the game. For each player whose value isn't -1, print them to screen with button
 //to roll their dice, then display the sum of their roles. Maybe display each roll and total?
 
+function startGame(){
+    playerOne = 0;
+    playerTwo = 0;
+    playerThree = 0;
+    playerFour = 0;
+    playerFive = 0;
+    playerSix = 0;
+    playerSeven = 0;
+    playerEight = 0;
+    playerNine = 0;
+    playerTen = 0;
 
-function playGame(){
-    //Probably something with a button to start a new game here
-    //Test here against rounds, and call finalRound if necessary. Pass in array
+    counter = 0;
+}
+
+function playRound(){
+    //How can I make a button here that will roll dice for the next round?
+
     if (counter === 5){
         finalRound(playerArray);
         counter++;
@@ -66,6 +80,7 @@ function fullRound(array){
 
 function rollDice(){
     let player = Math.round((((Math.random() * 4) + 1) + ((Math.random() * 6) + 1) + ((Math.random() * 8) + 1) + ((Math.random() * 10) + 1) + ((Math.random() * 12) + 1) + ((Math.random() * 20) + 1)));
+    //Put the result up when the player rolls
     return player;
 }
 
