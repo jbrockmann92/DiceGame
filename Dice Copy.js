@@ -107,7 +107,7 @@ function finalRound(array){
 //Need a function that will compare all numbers returned and assign the losers the int -1
 function comparePlayers(players){
     //Maybe want something here about if two players tie, they play directly against each other. But only if they're bottom 2?
-    players.sort(function(a, b) {return b-a});
+    players.sort(function(a, b) {return b.value-a.value});
     //This might throw a wrench in things with the 2d array
     if (counter > -1 && counter < 3){
         players[(players.length - ((counter * 2) + 1))].value = -1;
