@@ -31,7 +31,6 @@ function startGame(){
 
     playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix, playerSeven, playerEight, playerNine, playerTen];
 
-    //Write something to reset and make blank each of the divs in the html page
     for (let i = 0; i < playerArray.length; i++){
         document.getElementById(i).innerHTML = " ";
         document.getElementById("rounds").innerHTML = " ";
@@ -43,10 +42,10 @@ function playRound(){
     if (counter === 5){
         let winner = finalRound(playerArray);
         counter++;
-        alert("Game is over!" + winner.name + " won the game with a score of " + winner.value);
+        alert("Game is over! " + winner.name + " won the game with a score of " + winner.value);
     }
+    //Because of the order here, it looks like it's taking out two just before the final round, but it's doing just one
     else{
-        //Seems like what's printing already has two players removed. Change the order of those things
         if (counter < 6){
             fullRound(playerArray);
             counter++;
@@ -75,7 +74,6 @@ function fullRound(array){
 }
 
 function checkDiceRoll(roll){
-    //Might not need to use this at all??
     if (roll > 0){
         return roll;
     }
@@ -83,7 +81,6 @@ function checkDiceRoll(roll){
 
 function rollDice(){
     let player = Math.round((((Math.random() * 4) + 1) + ((Math.random() * 6) + 1) + ((Math.random() * 8) + 1) + ((Math.random() * 10) + 1) + ((Math.random() * 12) + 1) + ((Math.random() * 20) + 1)));
-    //This is printing the one item to the page. Probably have to put somewhere else so it can print all of the numbers 
     return player;
 }
 
@@ -129,7 +126,6 @@ function finalRoundRolls(){
     let thirdRand = Math.round(Math.random() * 20);
     let fourthRand = Math.round(Math.random() * 20);
     let d20 = [firstRand, secondRand, thirdRand, fourthRand]
-    //Make sure this is how it should work
     var d4 = Math.round(Math.random() * 3);
     let final = d20[d4];
     return final;
