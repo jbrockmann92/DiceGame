@@ -66,7 +66,7 @@ function playRound(){
 
 function fullRound(array){
     //Game should run six of these
-    for (let i = 0; i < array.length; i++){
+    for (let i = 1; i <= array.length; i++){
         if (array[i] === -1){
             continue;
         }
@@ -75,7 +75,7 @@ function fullRound(array){
             //For loop that runs 10 times and goes through 10 divs in the html file?
             if (checkDiceRoll(array[i]) > 0)
             {
-                document.getElementById(array[i]).innerHTML = "Player" + i + "'s score is " + array[i];
+                document.getElementById(i).innerHTML = "Player" + i + "'s score is " + array[i];
             }
             //Should work eh?
             //Write function that takes in array[i] and returns it if it's not -1, but returns something like "player is out" if it is
