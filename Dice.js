@@ -24,7 +24,7 @@ function startGame(){
     playerSix = {value: 0, name: "Sheev"};
     playerSeven = {value: 0, name: "JarJar"};
     playerEight = {value: 0, name: "Lancelot"};
-    playerNine = {value: 0, name: "MrsDoubtfire"};
+    playerNine = {value: 0, name: "Mrs. Doubtfire"};
     playerTen = {value: 0, name: "DeeDee"};
 
     counter = 0;
@@ -35,13 +35,12 @@ function startGame(){
     for (let i = 0; i < playerArray.length; i++){
         document.getElementById(i).innerHTML = " ";
         document.getElementById("rounds").innerHTML = " ";
+        document.getElementById(i + "d").innerHTML = " "
     }
 }
 
 function playRound(){
     if (counter === 5){
-        document.getElementById(2).innerHTML = " ";
-        document.getElementById(2 + "d").innerHTML = " ";
         let winner = finalRound(playerArray);
         counter++;
         alert("Game is over!" + winner.name + " won the game with a score of " + winner.value);
@@ -119,6 +118,8 @@ function comparePlayers(players){
     }
     else if (counter == 4){
         players[(players.length - (counter * 2))].value = -1;
+        document.getElementById(2).innerHTML = " ";
+        document.getElementById(2 + "d").innerHTML = " ";
     }
     else {
         players[(players.length - (counter + 1))].value = -1;
