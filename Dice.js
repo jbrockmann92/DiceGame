@@ -35,7 +35,7 @@ function startGame(){
     for (let i = 0; i < playerArray.length; i++){
         document.getElementById(i).innerHTML = " ";
         document.getElementById("rounds").innerHTML = " ";
-        document.getElementById(i + "d").innerHTML = " "
+        document.getElementById(i + "d").innerHTML = " ";
     }
 }
 
@@ -46,6 +46,7 @@ function playRound(){
         alert("Game is over!" + winner.name + " won the game with a score of " + winner.value);
     }
     else{
+        //Seems like what's printing already has two players removed. Change the order of those things
         if (counter < 6){
             fullRound(playerArray);
             counter++;
@@ -87,10 +88,8 @@ function rollDice(){
 }
 
 function finalRound(array){
-    //each roll 20 4 times, then roll d4 to determine which of their rolls plays
     array[0].value = finalRoundRolls();
     array[1].value = finalRoundRolls();
-    //Does this function run twice? I want to make sure it doesn't return the same number each time
     if (array[0].value === array[1].value){
         finalRound(array);
     }
@@ -104,11 +103,8 @@ function finalRound(array){
     return winner;
 }
 
-//Need a function that will compare all numbers returned and assign the losers the int -1
 function comparePlayers(players){
-    //Maybe want something here about if two players tie, they play directly against each other. But only if they're bottom 2?
     players.sort(function(a, b) {return b.value-a.value});
-    //This might throw a wrench in things with the 2d array
     if (counter > -1 && counter < 3){
         players[(players.length - ((counter * 2) + 1))].value = -1;
         players[(players.length - ((counter * 2) + 2))].value = -1;
@@ -124,16 +120,14 @@ function comparePlayers(players){
     else {
         players[(players.length - (counter + 1))].value = -1;
     }
-    //Separate counter here to keep functions pure. Is this best practice?
     return players;
-    //Should be fun to test
 }
 
 function finalRoundRolls(){
-    let firstRand = Math.round((Math.random() * 20) + 1);
-    let secondRand = Math.round((Math.random() * 20) + 1);
-    let thirdRand = Math.round((Math.random() * 20) + 1);
-    let fourthRand = Math.round((Math.random() * 20) + 1);
+    let firstRand = Math.round(Math.random() * 20);
+    let secondRand = Math.round(Math.random() * 20);
+    let thirdRand = Math.round(Math.random() * 20);
+    let fourthRand = Math.round(Math.random() * 20);
     let d20 = [firstRand, secondRand, thirdRand, fourthRand]
     //Make sure this is how it should work
     var d4 = Math.round(Math.random() * 3);
