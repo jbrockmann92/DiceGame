@@ -9,30 +9,13 @@ var playerSeven;
 var playerEight;
 var playerNine;
 var playerTen;
+//Probably better to make these 2d arrays that have names. That way, if I eliminate one, the name stays with the player
 
 var counter;
 
 //Should allow pure functions because I can edit what I pass in
 var playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix, playerSeven, playerEight, playerNine, playerTen];
 
-//Assign a a number to each for a dice roll for the first function, then write more functions
-//with if statements that ignore the variables that contain -1 or something. Assign the losers'
-//values to -1. 
-//After each round, reset every player's value to 0? Display all, then after button is pressed to roll,
-//redisplay the screen with whatever values have been assigned?
-//Each function should have a for loop that loops over how many items are in the list of active players
-//and displays them on the screen
-//Assign the players that aren't at -1 to a list after each round I think
-
-//I think I can have the same function for each round. Just have it ignore any players value is 25
-//Have to have a counter. If less than 4, eliminate two losers, if 4-5, eliminate one
-//Display counter as round
-
-//Separate function for the final round? I think so. If statement that tests how many players are left,
-//Then run it if only two
-
-//Function to run the game. For each player whose value isn't -1, print them to screen with button
-//to roll their dice, then display the sum of their roles. Maybe display each roll and total?
 
 function startGame(){
     playerOne = 0;
@@ -47,26 +30,26 @@ function startGame(){
     playerTen = 0;
 
     counter = 0;
+
+    playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix, playerSeven, playerEight, playerNine, playerTen];
 }
 
 function playRound(){
-    //How can I make a button here that will roll dice for the next round?
     if (counter === 5){
         finalRound(playerArray);
         counter++;
+        alert("Game is over!");
     }
     else{
         if (counter < 6){
             fullRound(playerArray);
             counter++;
         }
-        else alert("Game is over!");
     }
     document.getElementById("rounds").innerHTML = "Round: " + counter;
 }
 
 function fullRound(array){
-    //I need to get the game to pass in the updated array here instead of the full one. I haven't made updates to the 
     for (let i = 1; i < array.length; i++){
         if (array[i] === -1){
             document.getElementById(i).innerHTML = " ";
@@ -111,6 +94,9 @@ function finalRound(array){
     if (array[0] === array[1]){
         finalRound(array);
     }
+    let winner;
+    if (array[0] > array[1])
+    return winner;
 }
 
 //Need a function that will compare all numbers returned and assign the losers the int -1
