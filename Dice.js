@@ -62,20 +62,23 @@ function playRound(){
         }
         else alert("Game is over!");
     }
+    document.getElementById("rounds").innerHTML = "Round: " + counter;
 }
 
 function fullRound(array){
-    //Game should run six of these
-    for (let i = 1; i <= array.length; i++){
+    //I need to get the game to pass in the updated array here instead of the full one. I haven't made updates to the 
+    for (let i = 1; i < array.length; i++){
         if (array[i] === -1){
-            continue;
+            document.getElementById(i).innerHTML = " ";
         }
         else{
             array[i] = rollDice()
             //For loop that runs 10 times and goes through 10 divs in the html file?
-            if (checkDiceRoll(array[i]) > 0)
+            if (checkDiceRoll(array[i]) > 0 && i < 10)
             {
-                document.getElementById(i).innerHTML = "Player" + i + "'s score is " + array[i];
+                if (array[i] > 0){
+                    document.getElementById(i).innerHTML = "Player" + i + "'s score is " + array[i];
+                }
             }
             //Should work eh?
             //Write function that takes in array[i] and returns it if it's not -1, but returns something like "player is out" if it is
