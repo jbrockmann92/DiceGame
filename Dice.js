@@ -41,6 +41,7 @@ function startGame(){
 function playRound(){
     if (counter === 5){
         document.getElementById(2).innerHTML = " ";
+        document.getElementById(2 + "d").innerHTML = " ";
         let winner = finalRound(playerArray);
         counter++;
         alert("Game is over!" + winner.name + " won the game with a score of " + winner.value);
@@ -58,6 +59,7 @@ function fullRound(array){
     for (let i = 0; i < array.length; i++){
         if (array[i].value === -1){
             document.getElementById(i).innerHTML = " ";
+            document.getElementById(i + "d").innerHTML = " ";
         }
         else{
             array[i].value = rollDice();
@@ -65,6 +67,7 @@ function fullRound(array){
             {
                     document.getElementById(i).innerHTML = array[i].name;
                     document.getElementById(i + "d").innerHTML = array[i].value;
+                    //Not quite working. It's still printing the values, but not the names on the tables
             }
         }
     }
