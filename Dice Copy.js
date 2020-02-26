@@ -18,16 +18,16 @@ var playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, pl
 
 
 function startGame(){
-    playerOne = 0;
-    playerTwo = 0;
-    playerThree = 0;
-    playerFour = 0;
-    playerFive = 0;
-    playerSix = 0;
-    playerSeven = 0;
-    playerEight = 0;
-    playerNine = 0;
-    playerTen = 0;
+    playerOne = [0, 1];
+    playerTwo = [0, 2];
+    playerThree = [0, 3];
+    playerFour = [0, 4];
+    playerFive = [0, 5];
+    playerSix = [0, 6];
+    playerSeven = [0, 7];
+    playerEight = [0, 8];
+    playerNine = [0, 9];
+    playerTen = [0, 10];
 
     counter = 0;
 
@@ -36,9 +36,9 @@ function startGame(){
 
 function playRound(){
     if (counter === 5){
-        let winnerScore = finalRound(playerArray);
+        finalRound(playerArray);
         counter++;
-        alert("Game is over! Player 1 wins with a score of " + winnerScore + "!");
+        alert("Game is over!");
     }
     else{
         if (counter < 6){
@@ -51,16 +51,17 @@ function playRound(){
 
 function fullRound(array){
     for (let i = 1; i < array.length; i++){
-        if (array[i] === -1){
-            document.getElementById(i).innerHTML = " ";
+        if (array[i[0]] === -1){
+            document.getElementById(i[1]).innerHTML = " ";
         }
         else{
-            array[i] = rollDice()
+            array[i[0]] = rollDice();
+            console.log(array[i[0]]);
             //For loop that runs 10 times and goes through 10 divs in the html file?
-            if (checkDiceRoll(array[i]) > 0 && i < 10)
+            if (array[i[0]] > 0 && i < 10)
             {
-                if (array[i] > 0){
-                    document.getElementById(i).innerHTML = "Player" + i + "'s score is " + array[i];
+                if (array[i[0]] > 0){
+                    document.getElementById(i[1]).innerHTML = "Player" + i[1] + "'s score is " + array[i[0]];
                 }
             }
             //Should work eh?
@@ -88,18 +89,17 @@ function rollDice(){
 
 function finalRound(array){
     //each roll 20 4 times, then roll d4 to determine which of their rolls plays
-    array[0] = finalRoundRolls();
-    array[1] = finalRoundRolls();
+    array[0[0]] = finalRoundRolls();
+    array[1[0]] = finalRoundRolls();
     //Does this function run twice? I want to make sure it doesn't return the same number each time
-    if (array[0] === array[1]){
+    if (array[0[0]] === array[1[0]]){
         finalRound(array);
     }
-    
     let winner;
-    if (array[0] > array[1]){
+    if (array[0[0]] > array[1[0]]){
         winner = array[0];
     }
-    else if (array[0] < array[1]){
+    else if (array[0[0]] < array[1[0]]){
         winner = array[1];
     }
     return winner;
@@ -109,18 +109,19 @@ function finalRound(array){
 function comparePlayers(players){
     //Maybe want something here about if two players tie, they play directly against each other. But only if they're bottom 2?
     players.sort(function(a, b) {return b-a});
+    //This might throw a wrench in things with the 2d array
     if (counter > -1 && counter < 3){
-        players[(players.length - ((counter * 2) + 1))] = -1;
-        players[(players.length - ((counter * 2) + 2))] = -1;
+        players[(players.length - ((counter * 2) + 1))[0]] = -1;
+        players[(players.length - ((counter * 2) + 2))[0]] = -1;
     }
     else if (counter == 3){
-        players[(players.length - ((counter * 2) + 1))] = -1;
+        players[(players.length - ((counter * 2) + 1))[0]] = -1;
     }
     else if (counter == 4){
-        players[(players.length - (counter * 2))] = -1;
+        players[(players.length - (counter * 2))[0]] = -1;
     }
     else {
-        players[(players.length - (counter + 1))] = -1;
+        players[(players.length - (counter + 1))[0]] = -1;
     }
     //Separate counter here to keep functions pure. Is this best practice?
     return players;
