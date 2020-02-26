@@ -18,16 +18,16 @@ var playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, pl
 
 
 function startGame(){
-    playerOne = [0, 1];
-    playerTwo = [0, 2];
-    playerThree = [0, 3];
-    playerFour = [0, 4];
-    playerFive = [0, 5];
-    playerSix = [0, 6];
-    playerSeven = [0, 7];
-    playerEight = [0, 8];
-    playerNine = [0, 9];
-    playerTen = [0, 10];
+    playerOne = {value: 0, name: "John"};
+    playerTwo = {value: 0, name: "David"};
+    playerThree = {value: 0, name: "Monty"};
+    playerFour = {value: 0, name: "Anakin"};
+    playerFive = {value: 0, name: "Han"};
+    playerSix = {value: 0, name: "Sheev"};
+    playerSeven = {value: 0, name: "JarJar"};
+    playerEight = {value: 0, name: "Lancelot"};
+    playerNine = {value: 0, name: "MrsDoubtfire"};
+    playerTen = {value: 0, name: "DeeDee"};
 
     counter = 0;
 
@@ -36,9 +36,9 @@ function startGame(){
 
 function playRound(){
     if (counter === 5){
-        finalRound(playerArray);
+        let winner = finalRound(playerArray);
         counter++;
-        alert("Game is over!");
+        alert("Game is over!" + winner.name + " won the game with a score of " + winner.value);
     }
     else{
         if (counter < 6){
@@ -50,19 +50,18 @@ function playRound(){
 }
 
 function fullRound(array){
-    for (let i = 1; i < array.length; i++){
-        if (array[i[0]] === -1){
-            document.getElementById(i[1]).innerHTML = " ";
+    for (let i = 0; i < array.length; i++){
+        if (array[i].value === -1){
+            document.getElementById(i).innerHTML = " ";
+            //.value might not be right there??
         }
         else{
-            array[i[0]] = rollDice();
-            console.log(array[i[0]]);
+            array[i].value = rollDice();
+            console.log(array[i]);
             //For loop that runs 10 times and goes through 10 divs in the html file?
-            if (array[i[0]] > 0 && i < 10)
+            if (array[i].value > 0 && i < 10)
             {
-                if (array[i[0]] > 0){
-                    document.getElementById(i[1]).innerHTML = "Player" + i[1] + "'s score is " + array[i[0]];
-                }
+                    document.getElementById(i).innerHTML = array[i].name + "'s score is " + array[i].value;
             }
             //Should work eh?
             //Write function that takes in array[i] and returns it if it's not -1, but returns something like "player is out" if it is
@@ -89,17 +88,17 @@ function rollDice(){
 
 function finalRound(array){
     //each roll 20 4 times, then roll d4 to determine which of their rolls plays
-    array[0[0]] = finalRoundRolls();
-    array[1[0]] = finalRoundRolls();
+    array[0].value = finalRoundRolls();
+    array[1].value = finalRoundRolls();
     //Does this function run twice? I want to make sure it doesn't return the same number each time
-    if (array[0[0]] === array[1[0]]){
+    if (array[0].value === array[1].value){
         finalRound(array);
     }
     let winner;
-    if (array[0[0]] > array[1[0]]){
+    if (array[0].value > array[1].value){
         winner = array[0];
     }
-    else if (array[0[0]] < array[1[0]]){
+    else if (array[0].value < array[1].value){
         winner = array[1];
     }
     return winner;
@@ -111,17 +110,17 @@ function comparePlayers(players){
     players.sort(function(a, b) {return b-a});
     //This might throw a wrench in things with the 2d array
     if (counter > -1 && counter < 3){
-        players[(players.length - ((counter * 2) + 1))[0]] = -1;
-        players[(players.length - ((counter * 2) + 2))[0]] = -1;
+        players[(players.length - ((counter * 2) + 1))].value = -1;
+        players[(players.length - ((counter * 2) + 2))].value = -1;
     }
     else if (counter == 3){
-        players[(players.length - ((counter * 2) + 1))[0]] = -1;
+        players[(players.length - ((counter * 2) + 1))].value = -1;
     }
     else if (counter == 4){
-        players[(players.length - (counter * 2))[0]] = -1;
+        players[(players.length - (counter * 2))].value = -1;
     }
     else {
-        players[(players.length - (counter + 1))[0]] = -1;
+        players[(players.length - (counter + 1))].value = -1;
     }
     //Separate counter here to keep functions pure. Is this best practice?
     return players;

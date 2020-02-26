@@ -14,7 +14,7 @@ var playerTen;
 var counter;
 
 //Should allow pure functions because I can edit what I pass in
-var playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix, playerSeven, playerEight, playerNine, playerTen];
+var playerArray;
 
 
 function startGame(){
@@ -134,7 +134,7 @@ function finalRoundRolls(){
     let fourthRand = Math.round((Math.random() * 20) + 1);
     let d20 = [firstRand, secondRand, thirdRand, fourthRand]
     //Make sure this is how it should work
-    var d4 = Math.round((Math.random() * 4) + 1);
+    var d4 = Math.round((Math.random() * 3));
     let final = d20[d4];
     return final;
 }
