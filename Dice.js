@@ -9,36 +9,41 @@ var playerSeven;
 var playerEight;
 var playerNine;
 var playerTen;
-//Probably better to make these 2d arrays that have names. That way, if I eliminate one, the name stays with the player
 
 var counter;
 
-//Should allow pure functions because I can edit what I pass in
-var playerArray;
+var playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix, playerSeven, playerEight, playerNine, playerTen];
 
 
 function startGame(){
-    playerOne = 0;
-    playerTwo = 0;
-    playerThree = 0;
-    playerFour = 0;
-    playerFive = 0;
-    playerSix = 0;
-    playerSeven = 0;
-    playerEight = 0;
-    playerNine = 0;
-    playerTen = 0;
+    playerOne = {value: 0, name: "John"};
+    playerTwo = {value: 0, name: "David"};
+    playerThree = {value: 0, name: "Monty"};
+    playerFour = {value: 0, name: "Anakin"};
+    playerFive = {value: 0, name: "Han"};
+    playerSix = {value: 0, name: "Sheev"};
+    playerSeven = {value: 0, name: "JarJar"};
+    playerEight = {value: 0, name: "Lancelot"};
+    playerNine = {value: 0, name: "MrsDoubtfire"};
+    playerTen = {value: 0, name: "DeeDee"};
 
     counter = 0;
 
     playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix, playerSeven, playerEight, playerNine, playerTen];
+
+    //Write something to reset and make blank each of the divs in the html page
+    for (let i = 0; i < playerArray.length; i++){
+        document.getElementById(i).innerHTML = " ";
+        document.getElementById("rounds").innerHTML = " ";
+    }
 }
 
 function playRound(){
     if (counter === 5){
-        let winnerScore = finalRound(playerArray);
+        document.getElementById(2).innerHTML = " ";
+        let winner = finalRound(playerArray);
         counter++;
-        alert("Game is over! Player 1 wins with a score of " + winnerScore + "!");
+        alert("Game is over!" + winner.name + " won the game with a score of " + winner.value);
     }
     else{
         if (counter < 6){
@@ -50,24 +55,17 @@ function playRound(){
 }
 
 function fullRound(array){
-    for (let i = 1; i < array.length; i++){
-        if (array[i] === -1){
+    for (let i = 0; i < array.length; i++){
+        if (array[i].value === -1){
             document.getElementById(i).innerHTML = " ";
         }
         else{
-            array[i] = rollDice()
-            //For loop that runs 10 times and goes through 10 divs in the html file?
-            if (checkDiceRoll(array[i]) > 0 && i < 10)
+            array[i].value = rollDice();
+            if (array[i].value > 0 && i < 10)
             {
-                if (array[i] > 0){
-                    document.getElementById(i).innerHTML = "Player" + i + "'s score is " + array[i];
-                }
+                    document.getElementById(i).innerHTML = array[i].name;
+                    document.getElementById(i + "d").innerHTML = array[i].value;
             }
-            //Should work eh?
-            //Write function that takes in array[i] and returns it if it's not -1, but returns something like "player is out" if it is
-
-            //This returns the numbers I want one by one, but each time it ends up overwriting the old one. How to print each one in a new place?
-            //How do I progress through each of the players who is still in and print the number returned to their section?
         }
     }
     let playersRemoved = comparePlayers(array);
@@ -88,18 +86,17 @@ function rollDice(){
 
 function finalRound(array){
     //each roll 20 4 times, then roll d4 to determine which of their rolls plays
-    array[0] = finalRoundRolls();
-    array[1] = finalRoundRolls();
+    array[0].value = finalRoundRolls();
+    array[1].value = finalRoundRolls();
     //Does this function run twice? I want to make sure it doesn't return the same number each time
-    if (array[0] === array[1]){
+    if (array[0].value === array[1].value){
         finalRound(array);
     }
-    
     let winner;
-    if (array[0] > array[1]){
+    if (array[0].value > array[1].value){
         winner = array[0];
     }
-    else if (array[0] < array[1]){
+    else if (array[0].value < array[1].value){
         winner = array[1];
     }
     return winner;
@@ -108,19 +105,20 @@ function finalRound(array){
 //Need a function that will compare all numbers returned and assign the losers the int -1
 function comparePlayers(players){
     //Maybe want something here about if two players tie, they play directly against each other. But only if they're bottom 2?
-    players.sort(function(a, b) {return b-a});
+    players.sort(function(a, b) {return b.value-a.value});
+    //This might throw a wrench in things with the 2d array
     if (counter > -1 && counter < 3){
-        players[(players.length - ((counter * 2) + 1))] = -1;
-        players[(players.length - ((counter * 2) + 2))] = -1;
+        players[(players.length - ((counter * 2) + 1))].value = -1;
+        players[(players.length - ((counter * 2) + 2))].value = -1;
     }
     else if (counter == 3){
-        players[(players.length - ((counter * 2) + 1))] = -1;
+        players[(players.length - ((counter * 2) + 1))].value = -1;
     }
     else if (counter == 4){
-        players[(players.length - (counter * 2))] = -1;
+        players[(players.length - (counter * 2))].value = -1;
     }
     else {
-        players[(players.length - (counter + 1))] = -1;
+        players[(players.length - (counter + 1))].value = -1;
     }
     //Separate counter here to keep functions pure. Is this best practice?
     return players;
@@ -134,7 +132,7 @@ function finalRoundRolls(){
     let fourthRand = Math.round((Math.random() * 20) + 1);
     let d20 = [firstRand, secondRand, thirdRand, fourthRand]
     //Make sure this is how it should work
-    var d4 = Math.round((Math.random() * 3));
+    var d4 = Math.round(Math.random() * 3);
     let final = d20[d4];
     return final;
 }
