@@ -61,16 +61,15 @@ function fullRound(array){
             document.getElementById(i + "d").innerHTML = " ";
         }
         else{
-            array[i].value = rollDice();
+            array[i].value = rollDice(); //Problem here is that it rolls dice before comparing them
             if (array[i].value > 0 && i < 10)
             {
                     document.getElementById(i).innerHTML = array[i].name;
                     document.getElementById(i + "d").innerHTML = array[i].value;
-                    //Not quite working. It's still printing the values, but not the names on the tables
+                    var playersRemoved = comparePlayers(array);
             }
         }
     }
-    let playersRemoved = comparePlayers(array);
 }
 
 function checkDiceRoll(roll){

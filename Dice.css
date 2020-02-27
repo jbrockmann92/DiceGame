@@ -8,15 +8,26 @@
     margin-right: 40px;
     margin-top: 40px;
     margin-bottom: 40px;
-    background-color: rgb(255, 254, 191);
+    background-color: rgb(255, 254, 217);
 }
 
 .creamBackground{
-    background-color: rgba(139, 23, 58, 0.753); 
+    background-color: rgba(158, 25, 25, 0.753); 
 }
 
 .topBottomMargin{
     margin-bottom: 15px;
     margin-top: 20px;
-    
+}
+
+table{
+    text-align: center;
+}
+
+button:hover{
+    background-color: rgb(191, 191, 255);
+}
+
+button{
+    background-color: wheat;
 }
