@@ -32,9 +32,9 @@ function startGame(){
     playerArray = [playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix, playerSeven, playerEight, playerNine, playerTen];
 
     for (let i = 0; i < playerArray.length; i++){
-        document.getElementById(i).innerHTML = " ";
-        document.getElementById("rounds").innerHTML = " ";
-        document.getElementById(i + "d").innerHTML = " ";
+        playerArray[i].value = rollDice();
+        document.getElementById(i).innerHTML = playerArray[i].name;
+        document.getElementById(i + "d").innerHTML = playerArray[i].value;
     }
 }
 
@@ -61,12 +61,14 @@ function fullRound(array){
             document.getElementById(i + "d").innerHTML = " ";
         }
         else{
-            array[i].value = rollDice(); //Problem here is that it rolls dice before comparing them
+            if (counter > 0){
+                array[i].value = rollDice(); //Problem here is that it rolls dice before comparing them
+            }
             if (array[i].value > 0 && i < 10)
             {
                     document.getElementById(i).innerHTML = array[i].name;
                     document.getElementById(i + "d").innerHTML = array[i].value;
-                    var playersRemoved = comparePlayers(array);
+                    comparePlayers(array);
             }
         }
     }
