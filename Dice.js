@@ -36,6 +36,7 @@ function startGame(){
         document.getElementById(i).innerHTML = playerArray[i].name;
         document.getElementById(i + "d").innerHTML = playerArray[i].value;
     }
+    document.getElementById("rounds").innerHTML = " ";
 }
 
 function playRound(){
@@ -50,7 +51,17 @@ function playRound(){
             counter++;
         }
     }
-    document.getElementById("rounds").innerHTML = "Round: " + counter;
+    let counterInfo;
+    if (counter <3){
+        counterInfo = "The lowest two will be eliminated!";
+    }
+    else if (counter < 5 && counter > 2){
+        counterInfo = "One player will be eliminated!";
+    }
+    else{
+        counterInfo = "Next is the final round!";
+    }
+    document.getElementById("rounds").innerHTML = "Round: " + counter +  ". " + counterInfo;
 }
 
 function fullRound(array){
