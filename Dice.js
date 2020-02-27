@@ -44,7 +44,6 @@ function playRound(){
         counter++;
         alert("Game is over! " + winner.name + " won the game with a score of " + winner.value);
     }
-    //Because of the order here, it looks like it's taking out two just before the final round, but it's doing just one
     else{
         if (counter < 6){
             fullRound(playerArray);
@@ -62,7 +61,7 @@ function fullRound(array){
         }
         else{
             if (counter > 0){
-                array[i].value = rollDice(); //Problem here is that it rolls dice before comparing them
+                array[i].value = rollDice();
             }
             if (array[i].value > 0 && i < 10)
             {

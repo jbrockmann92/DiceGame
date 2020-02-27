@@ -12,7 +12,9 @@
 }
 
 .creamBackground{
-    background-color: rgba(158, 25, 25, 0.753); 
+    background-color: rgba(79, 169, 221, 0.568); 
+    border-radius: 25px;
+    padding: 20px;
 }
 
 .topBottomMargin{
@@ -25,9 +27,20 @@ table{
 }
 
 button:hover{
-    background-color: rgb(191, 191, 255);
+    background-color: rgb(255, 191, 191);
 }
 
-button{
-    background-color: wheat;
+button {
+    color: #1D9AF2;
+    background-color: #292D3E;
+    border: 1px solid #1D9AF2;
+    border-radius: 4px;
+    padding: 0 15px;
+    cursor: pointer;
+    height:32px;
+    font-size:14px;
+    transition: all 0.2s ease-in-out;
+    }
+    button:hover {
+    transform: scale(1.1);
 }
